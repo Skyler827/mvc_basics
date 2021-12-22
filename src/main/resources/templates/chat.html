@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div.messagebox {
+            border: 1px solid black;
+            margin: 15px;
+        }
+        div.WHISPER span.message {
+            font-style: italic;
+            color: gray;
+        }
+        div.SAY span.message {}
+        div.SHOUT span.message {
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<h1>Cool Chat</h1>
+<p>For cool cats</p>
+<div th:each="msg : ${messages}" th:class="'messagebox ' + ${msg.type}">
+    <p>Username: <span th:text="${msg.userName}"></span></p>
+    <p>Message: <span class="message" th:text="${msg.message}"></span></p>
+</div>
+<form th:object="${newMessage}" th:action="@{/chat}" method="post">
+    <label for="username">Username:</label>
+    <input th:field="*{userName}" id="username" type="text">
+    <label for="messageText">Message Text:</label>
+    <input th:field="*{message}" id="messageText" type="text">
+    <label for="messageType">Message Type: </label>
+    <select th:field="*{type}" id="messageType">
+        <option selected value="WHISPER">Whisper</option>
+        <option value="SAY">Say</option>
+        <option value="SHOUT">Shout</option>
+    </select>
+    <input type="submit">
+</form>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+</head>
+<body>
+<h1>Home page</h1>
+<p>Welcome text:</p>
+<p th:text="${welcomeMessage}">(None specified)</p>
+<form th:object="${newMessage}" action="#" th:action="@{/}" method="post">
+    <input th:field="*{text}" type="text">
+    <input type="submit">
+</form>
+<p>list text:</p>
+<ul>
+    <li th:each="msg : ${greetings}" th:text="${msg}"></li>
+</ul>
+<a href="/chat">Go to chat</a>
+</body>
+</html>
